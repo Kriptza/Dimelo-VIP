@@ -2,87 +2,37 @@
 const { Schema, model } = require('mongoose');
 
 const UsuarioSchema = Schema({
-    uid:{
+    nombre: {
         type: String,
-        require: true,
+        required: [true, 'El nombre es obligatorio']
+    },
+    correo: {
+        type: String,
+        required: [true, 'El correo es obligatorio'],
         unique: true
-      },
-      cedula: {
+    },
+    password: {
         type: String,
-        require: true,
-        trim: true,
-        unique: true
-      },
-      fullname: {
+        required: [true, 'La contraseña es obligatoria'],
+    },
+    img: {
         type: String,
-        require: true,
-        trim: true,
-        lowercase: true
-      },
-      birthday: {
-        type: Date,
-        require: false
-      },
-      movil: {
+    },
+    rol: {
         type: String,
-        require: true,
-        unique: true
-      },
-      phone: {
-        type: String,
-        require: false,
-      },
-      email: {
-        type: String,
-        require: false,
-        trim: true,
-        lowercase: true,
-        unique: true
-      },
-      address: {
-        string: String,
-        maps: {
-          description: String,
-          place_id: String
-        },
-      },
-      voting: {
-        departament: String,
-        municipality: String,
-        point: String,
-        table: String,
-      },
-      leader: {
-        type: String,
-        require: false,
-      },
-      locked: Boolean,
-      family: {
-        adults: String,
-        partners: String,
-      },
-      counts: {
-        followers: {
-          type: Number,
-          default: 0
-        },
-        movement: {
-          type: Number,
-          default: 0
-        }
-      },
-      level: {
-        type: Number,
-        default: 0
-      },
-      social: [
-        {
-          name: String,
-          link: String
-        }
-      ]
-    })
-    
+        required: true,
+        emun: ['ADMIN_ROLE', 'USER_ROLE']
+    },
+    estado: {
+        type: Boolean,
+        default: true
+    },
+    google: {
+        type: Boolean,
+        default: false
+    },
+});
+
 
 
 UsuarioSchema.methods.toJSON = function() {
