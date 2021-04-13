@@ -8,7 +8,7 @@ const Usuario = require('../models/usuario');
 
 const usuariosGet = async(req = request, res = response) => {
 
-    const { limite = 5, desde = 0 } = req.query;
+    const { limite = 2, desde = 0 } = req.query;
     const query = { estado: true };
 
     const [ total, usuarios ] = await Promise.all([
@@ -24,8 +24,7 @@ const usuariosGet = async(req = request, res = response) => {
     });
 }
 
-const usuariosPost = async(req, res = response) => {
-    
+const usuariosPost = async(req, res = response) => {  
     
     const { nombre, correo, password, rol } = req.body;
     const usuario = new Usuario({ nombre, correo, password, rol });
@@ -48,9 +47,7 @@ const usuariosPost = async(req, res = response) => {
     // Guardar en BD
     await usuario.save();
 
-    res.json({
-        usuario
-    });
+    res.json({ mensaje: "se agrego el usuario con exito" })
 }
 
 const usuariosPut = async(req, res = response) => {

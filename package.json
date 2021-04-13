@@ -4,7 +4,7 @@
   "description": "RestServer usuarios",
   "main": "index.js",
   "scripts": {
-      "star": "nodemon app"
+      "star": "node app.js"
   },
   "keywords": [],
   "author": "",
